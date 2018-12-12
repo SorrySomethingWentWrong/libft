@@ -1,2 +1,2 @@
 # libft
-Library c that you create for your personal usage you can personalize it as you want. This is my version.
+Library C99 that I created for my personal usage, you can personalize it as you want. This is my version.
