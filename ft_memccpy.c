@@ -10,17 +10,23 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-void	*ft_memccpy(void *dest, const void *src, int c, size_t n)
+#include "libft.h"
+
+void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
 	unsigned int	i;
 	char			*byte_src;
 	char			*byte_dst;
 
 	i = 0;
-	byte_src = (char*) src;
-	byte_dst = (char*) dst;
-	while (n && c == (int) byte_src[i])
-		byte_dst[i] = byte_src[i++];
-	byte_dst[i] = byte_src[i++];
+	byte_src = (char*)src;
+	byte_dst = (char*)dst;
+	while (n && c == (int)byte_src[i])
+	{
+		byte_dst[i] = byte_src[i];
+		i++;
+	}
+	byte_dst[i] = byte_src[i];
+	i++;
 	return (dst + i);
 }

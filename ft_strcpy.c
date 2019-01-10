@@ -10,16 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*stpcpy(char * dst, const char * src)
+char	*ft_stpcpy(char *dst, const char *src)
 {
 	int		i;
 
 	i = 0;
-	while (dest[i] || src[i])
+	while (dst[i] || src[i])
 	{
-		dest[i] = src[i];
+		dst[i] = src[i];
 		i++;
 	}
-	dest[i] = '\0';
-	return (dest);
+	dst[i] = '\0';
+	return (dst);
 }

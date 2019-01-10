@@ -10,19 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*strcat(char *restrict s1, const char *restrict s2)
-{
-	char			*ptrdest;
+#include "libft.h"
 
-	ptrdest = dest;
-	while (*dest)
-		dest++;
-	while (*src)
-	{
-		*dest = *src;
-		dest++;
-		src++;
-	}
-	*dest = '\0';
-	return (ptrdest);
+char		*ft_strcat(char * s1, const char * s2)
+{
+	char			*ptrs1;
+	unsigned long	i;
+
+	ptrs1 = &s1[ft_strlen(s1)];
+	i = 0;
+	while (s2[i])
+		*(ptrs1++) = s2[i++];
+	*(ptrs1) = s2[i];
+	return (s1);
 }

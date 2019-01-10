@@ -10,17 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-void		*ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
+#include "libft.h"
+
+void		*ft_memcpy(void * dst, const void * src, size_t n)
 {
 	char			*byte_src;
 	char			*byte_dst;
 
-	byte_src = (char*) src;
-	byte_dst = (char*) dst;
+	byte_src = (char*)src;
+	byte_dst = (char*)dst;
 	while (n)
 	{
 		n--;
 		byte_dst[n] = byte_src[n];
 	}
-	retunr (dst);
+	return (dst);
 }

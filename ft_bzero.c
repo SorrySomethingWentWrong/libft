@@ -18,10 +18,10 @@ void	ft_bzero(void *s, size_t n)
 	char			*byte_ptr;
 
 	i = 0;
-	byte_ptr = (char*) s;
+	byte_ptr = (char*)s;
 	while (i < n)
 	{
-		byte_ptr[i] = '/0';
+		byte_ptr[i] = '\0';
 		i++;
 	}
 }

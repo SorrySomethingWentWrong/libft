@@ -10,21 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*strncat(char *restrict s1, const char *restrict s2, size_t n)
+#include "libft.h"
+
+char	*ft_strncat(char *s1, const char *s2, size_t n)
 {
-	unsigned int	i;
+	unsigned long	i;
 	char			*ptrdest;
 
 	i = 0;
-	ptrdest = dest;
-	while (ptrdest[i] != '\0')
-		i++;
-	while (nb > 0)
+	ptrdest = &s1[ft_strlen(s1)];
+	if (n)
 	{
-		ptrdest[i] = *(src)++;
-		i++;
-		nb--;
+		while (s2[i] && --n)
+			*(ptrdest++) = s2[i++];
+		*(ptrdest) = '\0';
 	}
-	ptrdest[i] = '\0';
-	return (dest);
+	return (s1);
 }

@@ -10,26 +10,30 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*strstr(const char *haystack, const char *needle)
+#include "libft.h"
+
+char	*ft_strstr(char *haystack, const char *needle)
 {
 	char			*first_occurence;
-	unsigned int	i;
-	unsigned int	j;
+	unsigned long	i;
+	unsigned long	j;
 
 	i = 0;
-	if (*to_find == '\0')
-		return (str);
-	while (str[i])
+	if (*needle)
 	{
-		j = 0;
-		first_occurence = (str + i);
-		while (str[i + j] == to_find[j])
+		while (haystack[i])
 		{
-			if (to_find[j + 1] == '\0')
-				return (first_occurence);
-			j++;
+			if (haystack[i] == *needle)
+			{
+				j = 1;
+				first_occurence = haystack + i;
+				while (needle[j] && first_occurence[j] == needle[j])
+					j++;
+				if (!first_occurence[j] && !needle[j])
+					return (first_occurence);
+			}
+			i++;
 		}
-		i++;
 	}
-	return (0);
+	return (NULL);
 }

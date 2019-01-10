@@ -10,21 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
 
 void	*ft_memalloc(size_t size)
 {
-	void			*voidptr;
-	unsigned int	index;	
+	char			*byteptr;
+	unsigned int	index;
 
-	voidptr = malloc(size);
+	byteptr = (char*)malloc(sizeof(char) * size);
 	index = 0;
-	if (!*voidptr)
+	if (byteptr)
 		return (NULL);
 	while (index < size)
 	{
-		voidptr[index] = '\0';
+		byteptr[index] = '\0';
 		index++;
 	}
-	return (voidptr);
+	return ((void*)byteptr);
 }

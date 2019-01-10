@@ -10,39 +10,23 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//A remplacer par des macros
+#include "libft.h"
 
-unsigned char	isalphanumeric(char c)
-{
-	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')
-		|| (c >= '0' && c <= '9'))
-		return (1);
-	return (0);
-}
-
-unsigned char	isftnrv(char c)
-{
-	if (c == '\f' || c == '\t' || c == '\n' || c == '\r'
-		|| c == '\v' || c == ' ')
-		return (1);
-	return (0);
-}
-
-char			*ft_strcapitalize(char *str)
+char		*ft_strcapitalize(char *str)
 {
 	char	*s;
 
 	s = str;
 	while (*s != '\0')
 	{
-		while (isftnrv(*s))
+		while (!ft_isprint((int)*s))
 			s++;
-		if (*s >= 'a' && *s <= 'z')
+		if (ft_islower((int)*s))
 			*s -= 32;
-		while (isalphanumeric(*(++s)))
-			if (*s >= 'A' && *s <= 'Z')
+		while (ft_isalnum((int)*(++s)))
+			if (ft_isupper((int)*s))
 				*s += 32;
-		while (!isalphanumeric(*s) && !isftnrv(*s) && *s)
+		while (*s && !ft_isalnum((int)*s) && ft_isprint((int)*s))
 			s++;
 	}
 	return (str);
