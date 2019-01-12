@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tramet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/10 15:15:48 by tramet            #+#    #+#             */
-/*   Updated: 2019/01/10 15:17:57 by tramet           ###   ########.fr       */
+/*   Created: 2019/01/12 17:04:55 by tramet            #+#    #+#             */
+/*   Updated: 2019/01/12 17:04:56 by tramet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putchar(char c)
+char	*ft_strnew(size_t size)
 {
-	write(1, &c, 1);
+	if (size)
+		return ((char*)malloc(sizeof(char) * size));
+	else
+		return ((char*)NULL);
 }
