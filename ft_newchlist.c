@@ -1,18 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_newchlist.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tramet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/12 15:28:36 by tramet            #+#    #+#             */
-/*   Updated: 2018/09/16 23:37:47 by tramet           ###   ########.fr       */
+/*   Created: 2019/01/12 22:08:13 by tramet            #+#    #+#             */
+/*   Updated: 2019/01/12 22:08:26 by tramet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr(int nb)
+t_chlist	*ft_newchlist(t_link *link)
 {
-	ft_putnbr_fd(nb, 1);
+	t_chlist	*chlist;
+
+	chlist = NULL;
+	if (!(chlist = (t_chlist*)malloc(sizeof(t_chlist))))
+		return ((t_chlist*)NULL);
+	if (link)
+	{
+		chlist->first = link;
+		chlist->last = link;
+		chlist->lst_size = (size_t)1;
+	}
+	else
+	{
+		chlist->first = (t_link*)NULL;
+		chlist->last = (t_link*)NULL;
+		chlist->lst_size = (size_t)0;
+	}
+	return (chlist);
 }

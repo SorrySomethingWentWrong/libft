@@ -1,18 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_strnequ.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tramet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/12 15:28:36 by tramet            #+#    #+#             */
-/*   Updated: 2018/09/16 23:37:47 by tramet           ###   ########.fr       */
+/*   Created: 2019/01/12 19:34:50 by tramet            #+#    #+#             */
+/*   Updated: 2019/01/12 19:34:51 by tramet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr(int nb)
+int		ft_strnequ(char const *s1, char const *s2, size_t n)
 {
-	ft_putnbr_fd(nb, 1);
+	size_t		i;
+
+	if (!s1 || !s2)
+	{
+		if (s1)
+			return (0);
+		if (s2)
+			return (0);
+		return (1);
+	}
+	i = 0;
+	while (i < n && (s1[i] || s2[i]))
+	{
+		if (s1[i] != s2[i])
+			return (0);
+		i++;
+	}
+	return (1);
 }

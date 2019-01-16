@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_deletenlink.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tramet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/12 15:28:36 by tramet            #+#    #+#             */
-/*   Updated: 2018/09/16 23:37:47 by tramet           ###   ########.fr       */
+/*   Created: 2019/01/15 23:26:43 by tramet            #+#    #+#             */
+/*   Updated: 2019/01/15 23:28:32 by tramet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr(int nb)
+void		ft_deletenlink(t_chlist *chlist_handler, size_t pos_in_lst)
 {
-	ft_putnbr_fd(nb, 1);
+	t_link		*link;
+	t_link		*swap;
+
+	link = ft_getnlink(chlist_handler, pos_in_lst);
+	if (link)
+	{
+		link->prev->next = link->next;
+		link->next->prev = link->prev;
+		free(link);
+	}
 }

@@ -1,0 +1,17 @@
+ft_addendlink.c						      <
+ft_addnlink.c						      <
+ft_addstartlink.c					      <
+ft_deletenlink.c					      <
+ft_getnlink.c						      <
+ft_islower.c						      <
+ft_isupper.c						      <
+ft_lstadd.c						      <
+ft_lstlen.c						      <
+ft_newchlist.c						      <
+ft_newlink.c						      <
+ft_strcapitalize.c					      <
+ft_strequ.c						      <
+ft_strlcpy.c						      <
+ft_strmap.c						      <
+ft_strnequ.c						      <
+ft_strupcase.c						      <

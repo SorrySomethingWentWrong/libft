@@ -1,18 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_strequ.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tramet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/12 15:28:36 by tramet            #+#    #+#             */
-/*   Updated: 2018/09/16 23:37:47 by tramet           ###   ########.fr       */
+/*   Created: 2019/01/12 19:25:34 by tramet            #+#    #+#             */
+/*   Updated: 2019/01/12 19:25:35 by tramet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	ft_putnbr(int nb)
+int		ft_strequ(char const *s1, char const *s2)
 {
-	ft_putnbr_fd(nb, 1);
+	if (!s1 || !s2)
+	{
+		if (s1)
+			return (0);
+		if (s2)
+			return (0);
+		return (1);
+	}
+	while (*s1 || *s2)
+	{
+		if (*(s1++) != *(s2++))
+			return (0);
+	}
+	if (*s1 != *s2)
+		return (0);
+	return (1);
 }

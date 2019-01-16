@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tramet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/12 15:28:36 by tramet            #+#    #+#             */
-/*   Updated: 2018/09/16 23:37:47 by tramet           ###   ########.fr       */
+/*   Created: 2019/01/14 00:24:10 by tramet            #+#    #+#             */
+/*   Updated: 2019/01/14 00:24:11 by tramet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr(int nb)
+void	ft_lstadd(t_list **alst,t_list *new)
 {
-	ft_putnbr_fd(nb, 1);
+	if (alst && new)
+	{
+		new->next = *alst;
+		*alst = new;
+	}
 }
