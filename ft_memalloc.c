@@ -14,17 +14,9 @@
 
 void	*ft_memalloc(size_t size)
 {
-	char			*byteptr;
-	unsigned int	index;
+	void		*alloc;
 
-	byteptr = (char*)malloc(sizeof(char) * size);
-	index = 0;
-	if (byteptr)
-		return (NULL);
-	while (index < size)
-	{
-		byteptr[index] = '\0';
-		index++;
-	}
-	return ((void*)byteptr);
+	if ((alloc = malloc(size)))
+		ft_bzero(alloc, size);
+	return (alloc);
 }

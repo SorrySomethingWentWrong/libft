@@ -15,32 +15,12 @@
 /*
 ** Recupere la longueur jusqu'au caractere de fin `end'
 */
-size_t		lenuntil(char *s, char end)
+size_t static		ft_strlenuntil(char const *s, char end)
 {
-	return (*s == end ? 0 : lenuntil(s + 1, end) + 1);
+	return (*s == end ? 0 : ft_strlenuntil(s + 1, end) + 1);
 }
 
-/*
-** Transforme une list chainee en tableau a deux dimentions.
-*/
-char		**ltotab(t_list const *list)
-{
-	size_t		len;
-	char		**tab;
-
-	len = ft_lstlen(list);
-	if (!(tab = (char**)malloc(sizeof(char*) * (len + 1))))
-		return ((char***)NULL);
-	tab[len] = (char*)NULL;
-	while (len)
-	{
-		tab[--len] = list->content;
-		list = list->next;
-	}
-	return (tab);
-}
-
-char		**ft_strsplit(char const *s, char c)
+char				**ft_strsplit(char const *s, char c)
 {
 	char		**tab;
 	char		*slice;
@@ -54,17 +34,17 @@ char		**ft_strsplit(char const *s, char c)
 	i = 0;
 	line = 0;
 	list = NULL;
-	while (s && s[i] != c)
-		i++;
 	while (s)
 	{
-		if (!(slice = (char*)malloc(sizeof(char) * (len = lenuntil(s + i, c) + 1
-			))) || slice[len] = '\0' || !(ft_memcpy((void*)slice, (void*)(s + i)
-			, len)) ||  line++)
-			return ((char**)NULL);
 		while (s && s[i] != c)
 			i++;
+		if (!s || (!(slice = (char*)malloc(sizeof(char) * (len = ft_strlenuntil(s + i,
+			c) + 1))) || (slice[len] = '\0') || !(ft_memcpy((void*)slice, (void*)
+			(s + i), len)) ||  !(++line)))
+			return ((char**)NULL);
+		ft_lstadd(&list,ft_lstnew((void const*)slice,len));
 	}
-	tab = ltotab(list);
+	tab = ft_lstostrtab(list);
+	free(list);
 	return ((tab[line] = (char*)NULL) ? NULL : tab);
 }

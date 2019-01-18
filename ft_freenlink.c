@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_freenlink.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tramet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/09 23:00:39 by tramet            #+#    #+#             */
-/*   Updated: 2018/12/09 23:00:41 by tramet           ###   ########.fr       */
+/*   Created: 2019/01/18 04:42:07 by tramet            #+#    #+#             */
+/*   Updated: 2019/01/18 04:42:08 by tramet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		*ft_memcpy(void *dst, const void *src, size_t n)
+void		ft_freenlink(t_chlist *chlist_handler, size_t pos_in_lst)
 {
-	char			*byte_src;
-	char			*byte_dst;
-
-	byte_src = (char*)src;
-	byte_dst = (char*)dst;
-	while (n--)
-		byte_dst[n] = byte_src[n];
-	return (dst);
+	ft_freelink(chlist_handler, ft_getnlink(chlist_handler, pos_in_lst));
 }

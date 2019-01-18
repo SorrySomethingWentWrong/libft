@@ -335,7 +335,7 @@ void					ft_putendl(char const *s);
 /*
 ** write the number `n' in file descriptor `fd'.
 */
-void					ft_putnbr_fd(int n,int fd);
+void					ft_putnbr_fd(int n, int fd);
 /*
 ** Same as ft_putnbr_fd() in file descriptor 1.
 */
@@ -343,14 +343,14 @@ void					ft_putnbr(int n);
 
 /*
 ** Alloue (avec malloc(3)) et retourne un maillon “frais”. Les champs content et
-** content_size du nouveau maillon sont initialisés par copie des paramètres de
-** la fonction. Si le paramètre content est nul, le champs content est
-** initialisé à NULL et le champs content_size est initialisé à 0 quelque soit
-** la valeur du paramètre content_size. Le champ next est initialisé à NULL.
-** Si l’allocation échoue, la fonction renvoie NULL.
+** content_size du nouveau maillon sont initialisés par copie des paramètres
+** de la fonction. Si le paramètre content est nul, le champs content est
+** initialisé à NULL et le champs content_size est initialisé à 0 quelque
+** soit la valeur du paramètre content_size. Le champ next est initialisé à
+** NULL. Si l’allocation échoue, la fonction renvoie NULL.
 ** Returns new node, NULL if malloc(3) failed.
 */
-t_list*					ft_lstnew(void const *content,size_t content_size);
+t_list					*ft_lstnew(void const *content, size_t content_size);
 
 /*
 ** Prend en paramètre l’adresse d’un pointeur sur un maillon et libère la
@@ -366,30 +366,30 @@ void					ft_lstdelone(t_list **alst, void(*del)(void *, size_t));
 ** Prend en paramètre l’adresse d’un pointeur sur un maillon et libère la
 ** mémoire de ce maillon et celle de tous ses succes- seurs l’un après l’autre
 ** avec del et free(3). Pour terminer, le pointeur sur le premier maillon
-** maintenant libéré doit être mis à NULL (de manière similaire à la fonction
-** ft_memdel de la partie obligatoire). Use free(3).
+** maintenant libéré doit être mis à NULL (de manière similaire à la
+** fonction ft_memdel de la partie obligatoire). Use free(3).
 */
 void					ft_lstdel(t_list **alst, void(*del)(void*, size_t));
 
 /*
-**Ajoute l’élément new en tête de la liste.
-L’adresse d’un pointeur sur le premier maillon d’une liste.
-Le maillon à ajouter en tête de cette liste.
-Retour
-Rien.
-Aucune.
+** Ajoute l’élément new en tête de la liste.
+** L’adresse d’un pointeur sur le premier maillon d’une liste.
+** Le maillon à ajouter en tête de cette liste.
+** Retour
+** Rien.
+** Aucune.
 */
-void					ft_lstadd(t_list **alst,t_list *new);
+void					ft_lstadd(t_list **alst, t_list *new);
 
 /*
-**Parcourt la liste lst en appliquant à chaque maillon la fonc- tion f.
-Pointeur sur le premier maillon d’une liste.
-L’adresse d’une fonction à laquelle appliquer chaque maillon de la liste.
-Retour
-Rien.
-Aucune.
+** Parcourt la liste lst en appliquant à chaque maillon la fonc- tion f.
+** Pointeur sur le premier maillon d’une liste.
+** L’adresse d’une fonction à laquelle appliquer chaque maillon de la liste.
+** Retour
+** Rien.
+** Aucune.
 */
-void					ft_lstiter(t_list *lst,void (*f)(t_list *elem));
+void					ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 
 /*
 ** Parcourt la liste lst en appliquant à chaque maillon la fonc- tion f et
@@ -397,20 +397,34 @@ void					ft_lstiter(t_list *lst,void (*f)(t_list *elem));
 ** applications successives. Si une allocation échoue, la fonction renvoie
 ** NULL. Pointeur sur le premier maillon d’une liste.
 */
-t_list*					ft_lstmap(t_list *lst,t_list* (*f)(t_list *elem));
-
-
+t_list					*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 /*
 ** ############################ Personal functions ############################
 */
+/*
+** Transforme une list chainee en tableau de chaines de caractere.
+** Returns the node, NULL if malloc(3) failed, or lst=NULL.
+*/
+char					**ft_lstostrtab(t_list const *list);
+/*
+** Transforme une list chainee en chaines de caractere.
+** Returns the node, NULL if malloc(3) failed, or lst=NULL.
+*/
+
+char					*ft_lstostr(t_list *list);
 /*
 ** The ft_lstlen() function count the nodes until NULL element is found.
 */
 size_t					ft_lstlen(t_list const *list);
 /*
+** The ft_lstreverse() function reverse the list so the first become last and
+** vice versa, returns the new first element.
+*/
+t_list					*ft_lstreverse(t_list *list);
+/*
 ** The ft_newlink() function create a dual chained node with next and prev node
 ** is NULL.
-** Returns the node, NULL if malloc(3) failled, content is NULL or ctnt_size=0
+** Returns the node, NULL if malloc(3) failed, content is NULL or ctnt_size=0
 */
 t_link					*ft_newlink(void *content, size_t ctnt_size);
 /*
@@ -419,7 +433,7 @@ t_link					*ft_newlink(void *content, size_t ctnt_size);
 ** (t_link) of the list and the `lst_size' (number of `t_link' in list).
 ** If the link is NULL, it creates an empty list handler, the lst_size will
 ** be 0, and the first and last element in list will be set to NULL.
-** Return the pointer to the "fresh" structure (`malloc(3)'), NULL if failled.
+** Return the pointer to the "fresh" structure (`malloc(3)'), NULL if failed.
 */
 t_chlist				*ft_newchlist(t_link *link);
 /*
@@ -427,22 +441,22 @@ t_chlist				*ft_newchlist(t_link *link);
 ** Returns pointer to list nandler. Returns NULL if any malloc(3) failed.
 ** If chlist_handler is NULL call ft_newchlist() to create the list with
 ** element in it.
-** If content lst_size (ctnt_size) is NUL or content is NULL returns NULL.
+** If content is NUL or malloc(3) failed returns NULL.
 */
-t_chlist				*ft_addendlink(t_chlist **chlist_handler,
+t_link					*ft_addendlink(t_chlist **chlist_handler,
 	void *content, size_t ctnt_size);
 /*
 ** The ft_addstartlink() worked same as ft_addendlink() except that it add
 ** the element at the start of the list.
 */
-t_chlist				*ft_addstartlink(t_chlist **chlist_handler,
+t_link					*ft_addstartlink(t_chlist **chlist_handler,
 	void *content, size_t ctnt_size);
 /*
 ** The ft_addnlink() worked same as ft_addendlink() except that it add
 ** the element at the pos_in_lst index in list.
 ** If pos_in_lst is superior than `lst_size' it'll return NULL.
 */
-t_chlist				*ft_addnlink(t_chlist **chlist_handler,
+t_link					*ft_addnlink(t_chlist **chlist_handler,
 	void *content, size_t ctnt_size, size_t pos_in_lst);
 /*
 ** The ft_getnlink() function returns the node in the list at index `n'.
@@ -452,8 +466,17 @@ t_chlist				*ft_addnlink(t_chlist **chlist_handler,
 t_link					*ft_getnlink(t_chlist const *chlist_handler,
 	size_t pos_in_lst);
 /*
-** The ft_deletenlink() function delete (free(3)) the node at index `n'.
+** The ft_freenlink() function free (free(3)) the node at index `n'.
 */
-void					ft_deletenlink(t_chlist *chlist_handler,
+void					ft_freenlink(t_chlist *chlist_handler,
 	size_t pos_in_lst);
+/*
+** The ft_freenlink() function free (free(3)) the node link.
+*/
+void					ft_freelink(t_chlist *chlist_handler,
+	t_link *link);
+/*
+** The ft_putbinary_fd() function print `len' bytes memory pointed by `toprint'.
+*/
+void					ft_putbinary_fd(void *toprint, size_t len, int fd);
 #endif

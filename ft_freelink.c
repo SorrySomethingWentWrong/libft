@@ -1,30 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd.c                                        :+:      :+:    :+:   */
+/*   ft_freelink.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tramet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/14 00:24:10 by tramet            #+#    #+#             */
-/*   Updated: 2019/01/14 00:24:11 by tramet           ###   ########.fr       */
+/*   Created: 2019/01/18 04:43:24 by tramet            #+#    #+#             */
+/*   Updated: 2019/01/18 04:43:25 by tramet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd(t_list **alst, t_list *new)
+void		ft_freelink(t_chlist *chlist_handler, t_link *link)
 {
-	if (alst && new)
+	if (link)
 	{
-		if (!*alst)
+		if (!link->prev && link == chlist_handler->first)
 		{
-			new->next = (t_list*)NULL;
-			*alst = new;
+			chlist_handler->first = link->next;
+			link->next->prev = (t_link*)NULL;
+		}
+		else if (!link->next && link == chlist_handler->last)
+		{
+			chlist_handler->last = link->prev;
+			link->prev->next = (t_link*)NULL;
 		}
 		else
 		{
-			new->next = *alst;
-			*alst = new;
+			link->prev->next = link->next;
+			link->next->prev = link->prev;
 		}
+		free(link);
 	}
 }

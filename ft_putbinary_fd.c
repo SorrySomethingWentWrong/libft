@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_putbinary_fd.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tramet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/09 23:00:39 by tramet            #+#    #+#             */
-/*   Updated: 2018/12/09 23:00:41 by tramet           ###   ########.fr       */
+/*   Created: 2019/01/18 08:29:37 by tramet            #+#    #+#             */
+/*   Updated: 2019/01/18 08:29:39 by tramet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		*ft_memcpy(void *dst, const void *src, size_t n)
+void		ft_putbinary_fd(void *toprint, size_t len, int fd)
 {
-	char			*byte_src;
-	char			*byte_dst;
+	size_t				byte_size;
+	unsigned char		mask;
 
-	byte_src = (char*)src;
-	byte_dst = (char*)dst;
-	while (n--)
-		byte_dst[n] = byte_src[n];
-	return (dst);
+	if (!len)
+		return ;
+	byte_size = 8;
+	mask = 0x80;
+	while (byte_size--)
+	{
+		if (mask & *((unsigned char*)toprint))
+			ft_putchar_fd('1', 1);
+		else
+			ft_putchar_fd('0', 1);
+		mask >>= 1;
+	}
+	ft_putbinary_fd((void*)(((unsigned char*)toprint) + 1), --len, fd);
 }

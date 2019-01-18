@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 size_t		ft_lstlen(t_list const *list)
 {
 	return (list ? ft_lstlen(list->next) + 1 : 0);

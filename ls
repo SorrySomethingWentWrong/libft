@@ -3,7 +3,8 @@ ft_addnlink.c
 ft_addstartlink.c
 ft_atoi.c
 ft_bzero.c
-ft_deletenlink.c
+ft_freelink.c
+ft_freenlink.c
 ft_getnlink.c
 ft_isalnum.c
 ft_isalpha.c
@@ -17,7 +18,11 @@ ft_lstadd.c
 ft_lstdel.c
 ft_lstdelone.c
 ft_lstlen.c
+ft_lstmap.c
 ft_lstnew.c
+ft_lstostr.c
+ft_lstostrtab.c
+ft_lstreverse.c
 ft_memalloc.c
 ft_memccpy.c
 ft_memchr.c
@@ -28,6 +33,7 @@ ft_memmove.c
 ft_memset.c
 ft_newchlist.c
 ft_newlink.c
+ft_putbinary_fd.c
 ft_putchar.c
 ft_putchar_fd.c
 ft_putendl.c

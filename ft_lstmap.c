@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tramet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/09 23:00:39 by tramet            #+#    #+#             */
-/*   Updated: 2018/12/09 23:00:41 by tramet           ###   ########.fr       */
+/*   Created: 2019/01/18 09:54:45 by tramet            #+#    #+#             */
+/*   Updated: 2019/01/18 09:54:52 by tramet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		*ft_memcpy(void *dst, const void *src, size_t n)
+t_list		*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	char			*byte_src;
-	char			*byte_dst;
+	t_list		*maped;
+	t_list		*next;
 
-	byte_src = (char*)src;
-	byte_dst = (char*)dst;
-	while (n--)
-		byte_dst[n] = byte_src[n];
-	return (dst);
+	if (lst)
+	{
+		next = ft_lstmap(lst->next, f);
+		if (!(maped = (t_list*)malloc(sizeof(t_list))) || !(ft_memcpy(maped,
+			(*f)(lst), sizeof(t_list))))
+			return ((t_list*)NULL);
+		maped->next = next;
+		return (maped);
+	}
+	return ((t_list*)NULL);
 }
