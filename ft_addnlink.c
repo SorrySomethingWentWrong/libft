@@ -15,7 +15,6 @@
 t_link	*ft_addnlink(t_chlist **chlist_handler, void *content,
 	size_t ctnt_size, size_t pos_in_lst)
 {
-	size_t		i;
 	t_link		*chlink;
 
 	if (!content)

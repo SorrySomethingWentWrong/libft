@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstostrtab.c                                    :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tramet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/17 02:16:56 by tramet            #+#    #+#             */
-/*   Updated: 2019/01/17 02:16:57 by tramet           ###   ########.fr       */
+/*   Created: 2019/01/19 02:28:32 by tramet            #+#    #+#             */
+/*   Updated: 2019/01/19 02:28:34 by tramet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		**ft_lstostrtab(t_list const *list)
+void	ft_lstiter(t_list *lst, void (*f)(t_list *elem))
 {
-	size_t		len;
-	char		**tab;
-
-	len = ft_lstlen(list);
-	if (!(tab = (char**)malloc(sizeof(char*) * (len + 1))))
-		return ((char**)NULL);
-	tab[len] = (char*)NULL;
-	while (len--)
+	if (lst)
 	{
-		tab[len] = (char*)list->content;
-		list = list->next;
+		(*f)(lst);
+		ft_lstiter(lst->next, f);
 	}
-	return (tab);
 }

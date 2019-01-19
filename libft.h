@@ -48,7 +48,7 @@ struct					s_chlist
 {
 	t_link				*first;
 	t_link				*last;
-	unsigned int		lst_size;
+	size_t				lst_size;
 };
 /*
 ** ########################## Personal structures end ##########################
@@ -390,7 +390,6 @@ void					ft_lstadd(t_list **alst, t_list *new);
 ** Aucune.
 */
 void					ft_lstiter(t_list *lst, void (*f)(t_list *elem));
-
 /*
 ** Parcourt la liste lst en appliquant à chaque maillon la fonc- tion f et
 ** crée une nouvelle liste “fraiche” avec malloc(3) ré- sultant des
@@ -466,15 +465,16 @@ t_link					*ft_addnlink(t_chlist **chlist_handler,
 t_link					*ft_getnlink(t_chlist const *chlist_handler,
 	size_t pos_in_lst);
 /*
-** The ft_freenlink() function free (free(3)) the node at index `n'.
+** The ft_delchlist() function free (free(3)) the chained list `list'.
 */
-void					ft_freenlink(t_chlist *chlist_handler,
-	size_t pos_in_lst);
+void					ft_delchlist(t_chlist **list,
+	void (*delcont)(void *, size_t));
 /*
-** The ft_freenlink() function free (free(3)) the node link.
+** The ft_delonelink() function free (free(3)) the node at index `n'.
+** Reorganise the list to a corehent form.
 */
-void					ft_freelink(t_chlist *chlist_handler,
-	t_link *link);
+void		ft_delonelink(t_chlist **list,
+	void (*delcont)(void *, size_t), t_link **todel);
 /*
 ** The ft_putbinary_fd() function print `len' bytes memory pointed by `toprint'.
 */

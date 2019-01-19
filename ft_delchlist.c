@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstostrtab.c                                    :+:      :+:    :+:   */
+/*   ft_delchlist.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tramet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/17 02:16:56 by tramet            #+#    #+#             */
-/*   Updated: 2019/01/17 02:16:57 by tramet           ###   ########.fr       */
+/*   Created: 2019/01/19 01:17:53 by tramet            #+#    #+#             */
+/*   Updated: 2019/01/19 01:17:55 by tramet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		**ft_lstostrtab(t_list const *list)
+void		ft_delchlist(t_chlist **list, void (*delcont)(void *, size_t))
 {
-	size_t		len;
-	char		**tab;
+	t_link		*current;
+	t_link		*next;
 
-	len = ft_lstlen(list);
-	if (!(tab = (char**)malloc(sizeof(char*) * (len + 1))))
-		return ((char**)NULL);
-	tab[len] = (char*)NULL;
-	while (len--)
+	if (list &&*list && delcont)
 	{
-		tab[len] = (char*)list->content;
-		list = list->next;
+		current = (*list)->first;
+		while (--(*list)->lst_size || !current)
+		{
+			next = current->next;
+			ft_delonelink(list, delcont, &current);
+			current = next;
+		}
+		ft_memdel((void **)list);
 	}
-	return (tab);
 }

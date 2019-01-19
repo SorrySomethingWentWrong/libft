@@ -20,11 +20,27 @@ size_t static		ft_strlenuntil(char const *s, char end)
 	return (*s == end ? 0 : ft_strlenuntil(s + 1, end) + 1);
 }
 
-char				**ft_strsplit(char const *s, char c)
+void static			dontdelcontent(void *content, size_t cnt_size)
+{
+	if (!content)
+		cnt_size = 0;
+}
+
+char static			**rtrntab_free_lst(t_list **list)
 {
 	char		**tab;
+	void		(*f)(void *, size_t);
+
+	f = &dontdelcontent;
+	if (!(tab = ft_lstostrtab(*list)))
+		return ((char**)NULL);
+	ft_lstdel(list, f);
+	return (tab);
+}
+
+char				**ft_strsplit(char const *s, char c)
+{
 	char		*slice;
-	size_t		line;
 	size_t		i;
 	size_t		len;
 	t_list		*list;
@@ -32,19 +48,19 @@ char				**ft_strsplit(char const *s, char c)
 	if (!s)
 		return ((char**)NULL);
 	i = 0;
-	line = 0;
 	list = NULL;
 	while (s)
 	{
 		while (s && s[i] != c)
 			i++;
-		if (!s || (!(slice = (char*)malloc(sizeof(char) * (len = ft_strlenuntil(s + i,
-			c) + 1))) || (slice[len] = '\0') || !(ft_memcpy((void*)slice, (void*)
-			(s + i), len)) ||  !(++line)))
-			return ((char**)NULL);
-		ft_lstadd(&list,ft_lstnew((void const*)slice,len));
+		if (s)
+		{
+			if (!(slice = (char*)malloc(sizeof(char) * (len = ft_strlenuntil
+				(s + i, c) + 1))) || (slice[len] = '\0') || !(ft_memcpy
+				((void*)slice, (void*)(s + i), len)))
+				return ((char**)NULL);
+			ft_lstadd(&list,ft_lstnew((void const*)slice,len));
+		}
 	}
-	tab = ft_lstostrtab(list);
-	free(list);
-	return ((tab[line] = (char*)NULL) ? NULL : tab);
+	return (rtrntab_free_lst(&list));
 }
