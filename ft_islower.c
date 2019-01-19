@@ -12,7 +12,7 @@
 
 int			ft_islower(int c)
 {
-	if (c > 96 && c < 123)
+	if (c >= 0x61 && c <= 0x7a)
 		return (c);
 	return (0);
 }

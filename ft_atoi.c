@@ -10,25 +10,34 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_atoi(const char *str)
+int static	anumtoi(char const *str, int neg)
 {
 	unsigned int	i;
 	unsigned int	result;
-	int				neg;
 
 	i = 0;
 	result = 0;
-	neg = 1;
-	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n' || str[i] == '\r'
-			|| str[i] == '\v' || str[i] == '\f')
-		i++;
-	if ((str[i] == '-' ? neg = -neg : 0) || str[i] == '+')
-		i++;
-	while (str[i] >= '0' && str[i] <= '9')
+	while (*str && *str >= '0' && *str <= '9' && i++ != 12)
 	{
 		result *= 10;
-		result += str[i] - '0';
-		i++;
+		result += *(str++) - '0';
 	}
-	return (neg * result);
+	if ((result & 0x80000000) && (neg ? 
+		(!(result ^ 0x80000000) ?
+			(neg *= result) : neg++) : --neg))
+		return (neg);
+	return (neg ? neg  * result : result);
+}
+
+int			ft_atoi(const char *str)
+{
+	int			neg;
+
+	neg = 0;
+	while (((!(*str & 0xf0) && *str ^ 0xf7) || *str == ' ')
+		&& *str)
+		str++;
+	if ((*str == '-' ? --neg : 0) || *str == '+')
+		str++;
+	return (anumtoi(str, neg));
 }

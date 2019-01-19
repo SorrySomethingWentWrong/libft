@@ -12,14 +12,17 @@
 
 #include "libft.h"
 
-void		*ft_memcpy(void *dst, const void *src, size_t n)
+void static		recurscpy(unsigned char const *s, unsigned char *d, size_t n)
 {
-	char			*byte_src;
-	char			*byte_dst;
+	if (n)
+	{
+		*d = *s;
+		recurscpy((unsigned char const *)++s, ++d, --n);
+	}
+}
 
-	byte_src = (char*)src;
-	byte_dst = (char*)dst;
-	while (n--)
-		byte_dst[n] = byte_src[n];
+void			*ft_memcpy(void *dst, const void *src, size_t n)
+{
+	recurscpy((unsigned char const *)src, (unsigned char*)dst, n);
 	return (dst);
 }

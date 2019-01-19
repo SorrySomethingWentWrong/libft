@@ -110,14 +110,14 @@ char					*ft_strdup(const char *s);
 ** `\0' character.) The source and destination strings should not overlap, as
 ** the behavior is undefined.
 */
-char					*ft_strcpy(char *dest, const char *src);
+char					*ft_strcpy(char *dst, const char *src);
 /*
 ** The strncpy() function copy at most len characters from src into dst. If src
 ** is less than len characters long, the remainder of dst is filled with `\0'
 ** characters.  Otherwise, dst is not terminated. The source and destination
 ** strings should not overlap, as the behavior is undefined.
 */
-char					*ft_strncpy(char *dest, const char *src, size_t n);
+char					*ft_strncpy(char *dst, const char *src, size_t n);
 /*
 ** The strlcpy() and strlcat() functions copy and concatenate strings
 ** respectively.  They are designed to be safer, more consistent, and less

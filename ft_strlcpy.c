@@ -14,7 +14,7 @@
 
 size_t		ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	unsigned int	i;
+	size_t		i;
 
 	i = 0;
 	while (--size && *(src + i))
@@ -23,5 +23,5 @@ size_t		ft_strlcpy(char *dst, const char *src, size_t size)
 		i++;
 	}
 	*(dst + i) = '\0';
-	return (ft_strlen(src));
+	return (ft_strlen((const char *)src));
 }

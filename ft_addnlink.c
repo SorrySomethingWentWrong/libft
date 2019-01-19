@@ -36,11 +36,8 @@ t_link	*ft_addnlink(t_chlist **list_handler, void *content,
 		link->prev = (*list_handler)->last;
 		(*list_handler)->last = link;
 	}
-	if (!(next->prev))
-	{
-		;
-	}
-	link->prev = 
-	(*list_handler)->last = link;
+	(!(next->prev)) || !(next->prev->next = link) ?
+		(*list_handler)->first = link : (link->prev = next->prev);
+	link->next = next;
 	return (link);
 }

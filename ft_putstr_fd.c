@@ -14,9 +14,6 @@
 
 void		ft_putstr_fd(char const *s, int fd)
 {
-	if (s)
-	{
-		ft_putchar_fd(*s, fd);
-		ft_putstr_fd(s + 1, fd);
-	}
+	s ? ft_putchar_fd((const char)*s, fd) :
+		ft_putstr_fd((char const *)++s, fd);
 }

@@ -12,7 +12,7 @@
 
 int			ft_isupper(int c)
 {
-	if (c > 64 && c < 91)
+	if (c >= 0x41 && c <= 0x5a)
 		return (c);
 	return (0);
 }

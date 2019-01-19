@@ -12,7 +12,14 @@
 
 #include "libft.h"
 
+size_t		recunslen(unsigned char const *s)
+{
+	if (*s)
+		return (1 + recunslen(++s));
+	return (0);
+}
+
 size_t		ft_strlen(const char *s)
 {
-	return (*s ? ft_strlen(++s) + 1 : 0);
+	return (recunslen((unsigned char const *)s));
 }
