@@ -35,6 +35,7 @@ SOURCES =	ft_addendlink.c\
 			ft_lstadd.c\
 			ft_lstdel.c\
 			ft_lstdelone.c\
+			ft_lstiter.c\
 			ft_lstlen.c\
 			ft_lstmap.c\
 			ft_lstnew.c\
@@ -88,7 +89,6 @@ SOURCES =	ft_addendlink.c\
 			ft_strstr.c\
 			ft_strsub.c\
 			ft_strtrim.c\
-			ft_strupcase.c\
 			ft_tolower.c\
 			ft_toupper.c
 

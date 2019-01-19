@@ -12,8 +12,8 @@
 
 #include "libft.h"
 
-t_link	*ft_addstartlink(t_chlist **chlist_handler, void *content,
+t_link	*ft_addstartlink(t_chlist **list_handler, void *content,
 	size_t ctnt_size)
 {
-	return (ft_addnlink(chlist_handler, content, ctnt_size, (size_t)1));
+	return (ft_addnlink(list_handler, content, ctnt_size, (size_t)1));
 }

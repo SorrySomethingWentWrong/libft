@@ -71,6 +71,15 @@ void					ft_bzero(void *s, size_t n);
 */
 void					*ft_memcpy(void *dst, const void *src, size_t n);
 /*
+** The ft_memccpy() function copies bytes from string src to string dst.  If
+** the character c (as converted to an unsigned char) occurs in the string
+** src, the copy stops and a pointer to the byte after the copy of c in the
+** string dst is returned.  Otherwise, n bytes are copied, and a NULL
+** pointer is returned.
+*/
+void					*ft_memccpy(void *dst, const void *src, int c,
+	size_t n);
+/*
 ** The memmove() function copies n bytes from string src to string dst.  The
 ** two strings may overlap; the copy is always done in a non-destructive manner.
 */
@@ -109,6 +118,19 @@ char					*ft_strcpy(char *dest, const char *src);
 ** strings should not overlap, as the behavior is undefined.
 */
 char					*ft_strncpy(char *dest, const char *src, size_t n);
+/*
+** The strlcpy() and strlcat() functions copy and concatenate strings
+** respectively.  They are designed to be safer, more consistent, and less
+** error prone replacements for strncpy(3) and strncat(3).  Unlike those
+** functions, strlcpy() and strlcat() take the full size of the buffer (not
+** just the length) and guarantee to NUL-terminate the result (as long as
+** size is larger than 0 or, in the case of strlcat(), as long as there is
+** at least one byte free in dst).  Note that a byte for the NUL should be
+** included in size.  Also note that strlcpy() and strlcat() only operate on
+** true ``C'' strings.  This means that for strlcpy() src must be NUL-termi-
+** nated and for strlcat() both src and dst must be NUL-terminated.
+*/
+size_t					ft_strlcpy(char *dst, const char *src, size_t size);
 /*
 ** The strcat() function append a copy of the null-terminated string s2 to the
 ** end of the null-terminated string s1, then add a terminating `\0'.
@@ -175,6 +197,14 @@ int						ft_strcmp(const char *s1, const char *s2);
 ** is found, respectively, to be less than, to match, or be greater than s2.
 */
 int						ft_strncmp(const char *s1, const char *s2, size_t n);
+/*
+** Alloue (avec malloc(3)) et retourne une copie de la chaîne passée en
+** paramètre sans les espaces blancs au debut et à la fin de cette chaîne.
+** On considère comme espaces blancs les caractères ’ ’, ’\n’ et ’\t’.
+** Si s ne contient pas d’espaces blancs au début ou à la fin, la fonction
+** renvoie une copie de s. Si l’allocation echoue, la fonction renvoie NULL.
+*/
+char					*ft_strtrim(char const *s);
 /*
 ** The atoi() function converts the initial portion of the string pointed to by
 ** str to int representation.
@@ -438,31 +468,31 @@ t_chlist				*ft_newchlist(t_link *link);
 /*
 ** The ft_addendlink() function append `t_link'  at the end of the `t_chlist'.
 ** Returns pointer to list nandler. Returns NULL if any malloc(3) failed.
-** If chlist_handler is NULL call ft_newchlist() to create the list with
+** If list_handler is NULL call ft_newchlist() to create the list with
 ** element in it.
 ** If content is NUL or malloc(3) failed returns NULL.
 */
-t_link					*ft_addendlink(t_chlist **chlist_handler,
+t_link					*ft_addendlink(t_chlist **list_handler,
 	void *content, size_t ctnt_size);
 /*
 ** The ft_addstartlink() worked same as ft_addendlink() except that it add
 ** the element at the start of the list.
 */
-t_link					*ft_addstartlink(t_chlist **chlist_handler,
+t_link					*ft_addstartlink(t_chlist **list_handler,
 	void *content, size_t ctnt_size);
 /*
 ** The ft_addnlink() worked same as ft_addendlink() except that it add
 ** the element at the pos_in_lst index in list.
 ** If pos_in_lst is superior than `lst_size' it'll return NULL.
 */
-t_link					*ft_addnlink(t_chlist **chlist_handler,
+t_link					*ft_addnlink(t_chlist **list_handler,
 	void *content, size_t ctnt_size, size_t pos_in_lst);
 /*
 ** The ft_getnlink() function returns the node in the list at index `n'.
 ** Return NULL if `pos_in_lst' is under the size of the list, if
-** `chlist_handler' is NULL, or if there is a problem inside the list.
+** `list_handler' is NULL, or if there is a problem inside the list.
 */
-t_link					*ft_getnlink(t_chlist const *chlist_handler,
+t_link					*ft_getnlink(t_chlist const *list_handler,
 	size_t pos_in_lst);
 /*
 ** The ft_delchlist() function free (free(3)) the chained list `list'.
@@ -473,7 +503,7 @@ void					ft_delchlist(t_chlist **list,
 ** The ft_delonelink() function free (free(3)) the node at index `n'.
 ** Reorganise the list to a corehent form.
 */
-void		ft_delonelink(t_chlist **list,
+void					ft_delonelink(t_chlist **list,
 	void (*delcont)(void *, size_t), t_link **todel);
 /*
 ** The ft_putbinary_fd() function print `len' bytes memory pointed by `toprint'.

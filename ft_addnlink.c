@@ -12,26 +12,35 @@
 
 #include "libft.h"
 
-t_link	*ft_addnlink(t_chlist **chlist_handler, void *content,
+t_link	*ft_addnlink(t_chlist **list_handler, void *content,
 	size_t ctnt_size, size_t pos_in_lst)
 {
-	t_link		*chlink;
+	t_link		*link;
+	t_link		*next;
 
-	if (!content)
+	if (!pos_in_lst || !list_handler)
 		return ((t_link*)NULL);
-	if (!chlist_handler)
+	if (!*list_handler)
 	{
-		if (pos_in_lst != (size_t)1 || !(chlist_handler =
-			ft_newchlist(chlink = ft_newlink(content, ctnt_size))))
+		if (pos_in_lst != 1)
 			return ((t_link*)NULL);
-		return (chlink);
+		*list_handler = ft_newchlist(link = ft_newlink(content, ctnt_size));
+		return (link);
 	}
-	else 
+	if (++(*list_handler)->lst_size > pos_in_lst ||
+		!(link = ft_newlink(content, ctnt_size)))
+		return ((t_link*)NULL);
+	if (!(next = ft_getnlink(*list_handler, pos_in_lst)))
 	{
-		if (*chlist_handler->lst_size < pos_in_lst ||
-			!chlink = ft_newlink(content, ctnt_size))
-			return ((t_link*)NULL);
+		(*list_handler)->last->next = link;
+		link->prev = (*list_handler)->last;
+		(*list_handler)->last = link;
+	}
+	if (!(next->prev))
+	{
 		;
 	}
-	return ((t_link*)NULL);
+	link->prev = 
+	(*list_handler)->last = link;
+	return (link);
 }
