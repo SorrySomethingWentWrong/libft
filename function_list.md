@@ -76,4 +76,3 @@
 > ft_putbinary_fd.c
 > ft_strcapitalize.c
 > ft_strlcpy.c
-> ft_strupcase.c
