@@ -20,5 +20,7 @@ char		*ft_strchr(char *s, int c)
 			return (s);
 		s++;
 	}
+	if (*s == (char)c)
+		return (s);
 	return (NULL);
 }

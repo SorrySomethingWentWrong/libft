@@ -17,14 +17,12 @@ char	*ft_strsub(char const *s, unsigned int start, size_t len)
 	char		*fs;
 	size_t		i;
 
-	if (!s || !(fs = (char*)malloc(sizeof(char) * (len + 1))))
+	if (!s || !(fs = ft_strnew(len)))
 		return ((char*)NULL);
 	i = 0;
-	fs[len] = '\n';
 	while (i < len)
 	{
-		fs[i] = s[start + i];
-		i++;
+		fs[i++] = s[start++];
 	}
 	return (fs);
 }

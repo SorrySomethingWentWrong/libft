@@ -12,32 +12,29 @@
 
 #include "libft.h"
 
-t_list static	*uitolst(t_list *charlist, unsigned int n)
+size_t static	countdigits(int n)
 {
-	char		c;
-
-	if (n)
-	{
-		charlist = uitolst(charlist, n / 10);
-		c = '0' + n % 10;
-		ft_lstadd(&charlist, ft_lstnew((void*)&c, 1));
-	}
-	return (charlist);
+	return (n ? 1 + countdigits(n / 10) : 0);
 }
 
 char			*ft_itoa(int n)
 {
-	t_list		*charlist;
-	char		c;
+	char		*s;
 
-	charlist = (t_list*)NULL;
-	c = '-';
+	if (n == 0xffffffff)
+			return ("-2147483648");
 	if (n >> (sizeof(int) - 1))
 	{
-		charlist = ft_lstnew((void*)&c, 1);
-		if (n == -2147483648)
-			return ("-2147483648");
-		n = -n;
+		if (!(s = ft_strnew(1 + countdigits(n))))
+			return ((char*)NULL);
+		*s++ = '-';
 	}
-	return (ft_lstostr(ft_lstreverse(uitolst(charlist, n))));
+	else if (!(s = ft_strnew(countdigits(n))))
+		return ((char*)NULL);
+	while (*s)
+	{
+		*s = '0' + n % 10;
+		n /= 10;
+	}
+	return (s);
 }
