@@ -65,6 +65,7 @@
 > ft_delchlist.c
 > ft_delonelink.c
 > ft_getnlink.c
+> ft_isblank.c
 > ft_islower.c
 > ft_isupper.c
 > ft_lstlen.c
