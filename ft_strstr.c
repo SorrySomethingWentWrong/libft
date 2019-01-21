@@ -14,26 +14,23 @@
 
 char	*ft_strstr(char *haystack, const char *needle)
 {
-	char			*first_occurence;
-	unsigned long	i;
-	unsigned long	j;
+	size_t	j;
 
-	i = 0;
 	if (*needle)
 	{
-		while (haystack[i])
+		while (*haystack)
 		{
-			if (haystack[i] == *needle)
+			if (*haystack == *needle)
 			{
-				j = 1;
-				first_occurence = haystack + i;
-				while (needle[j] && first_occurence[j] == needle[j])
+				j = 0;
+				while (needle[j] && haystack[j] == needle[j])
 					j++;
-				if (!first_occurence[j] && !needle[j])
-					return (first_occurence);
+				if (!needle[j])
+					return (haystack);
 			}
-			i++;
+			haystack++;
 		}
+		return ((char*)NULL);
 	}
-	return (NULL);
+	return (haystack);
 }

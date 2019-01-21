@@ -14,26 +14,37 @@
 
 size_t static	countdigits(int n)
 {
-	return (n ? 1 + countdigits(n / 10) : 0);
+	size_t		count;
+
+	count = 0;
+	while (n && ++count)
+		n /= 10;
+	return (count);
 }
 
 char			*ft_itoa(int n)
 {
 	char		*s;
+	size_t		len;
+	size_t		i;
 
-	if (n == 0xffffffff)
-			return ("-2147483648");
-	if (n >> (sizeof(int) - 1))
+	if (!n)
+		return (ft_strcpy(ft_strnew(1), "0"));
+	if (n == -2147483648)
+		return (ft_strcpy(ft_strnew(11), "-2147483648"));
+	len = countdigits(n);
+	if (n < 0)
 	{
-		if (!(s = ft_strnew(1 + countdigits(n))))
+		if (!(s = ft_strnew(1 + len)))
 			return ((char*)NULL);
 		*s++ = '-';
 	}
-	else if (!(s = ft_strnew(countdigits(n))))
+	else if (!(s = ft_strnew(len)))
 		return ((char*)NULL);
-	while (*s)
+	i = 0;
+	while (i < len)
 	{
-		*s = '0' + n % 10;
+		s[i++] = '0' + (n % 10);
 		n /= 10;
 	}
 	return (s);

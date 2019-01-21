@@ -232,6 +232,10 @@ int						ft_isalnum(int c);
 */
 int						ft_isascii(int c);
 /*
+** Checks if char is '\f' '\t' '\n' '\r' '\v' ' ' (printable blank)
+*/
+int						ft_isblank(char c);
+/*
 ** checks for any printable character including space.
 */
 int						ft_isprint(int c);

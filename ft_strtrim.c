@@ -14,27 +14,20 @@
 
 char	*ft_strtrim(char const *s)
 {
-	char		*fs;
-	size_t		size;
-	size_t		i;
+	size_t		len;
+	char		*trim;
 
 	if (!s)
+		return (ft_strnew(0));
+	while (*s && ft_isblank(*s))
+		s++;
+	if (!*s)
+		return ((char*)ft_memalloc(1));
+	len = ft_strlen(s);
+	while (ft_isblank(s[--len]))
+		;
+	len += 1;
+	if (!(trim = ft_strsub(s, 0, len)))
 		return ((char*)NULL);
-	size = ft_strlen(s) - 1;
-	i = 0;
-	while (s[size] == ' ' || s[size] == '\n' || s[size] == '\t')
-		size--;
-	while (s[i] == ' ' || s[i] == '\n' || s[i] == '\t')
-		i++;
-	if (!(fs = (char*)malloc(sizeof(char) * (size + 1 - i))))
-		return ((char*)NULL);
-	fs[size - i] = '\0';
-	s += i;
-	i = 0;
-	while (i < size)
-	{
-		fs[i] = s[i];
-		i++;
-	}
-	return (fs);
+	return (trim);
 }

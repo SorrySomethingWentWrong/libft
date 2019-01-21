@@ -14,5 +14,10 @@
 
 size_t		ft_lstlen(t_list const *list)
 {
-	return (list ? ft_lstlen(list->next) + 1 : 0);
+	size_t		len;
+
+	len = 0;
+	while ((list = list->next) ? ++len : 0)
+		;
+	return (len);
 }
