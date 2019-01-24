@@ -26,4 +26,3 @@ char		*ft_strrchr(char *s, int c)
 	}
 	return (NULL);
 }
- 

@@ -17,7 +17,7 @@ void		ft_delchlist(t_chlist **list, void (*delcont)(void *, size_t))
 	t_link		*current;
 	t_link		*next;
 
-	if (list &&*list && delcont)
+	if (list && *list && delcont)
 	{
 		current = (*list)->first;
 		while (--(*list)->lst_size || !current)

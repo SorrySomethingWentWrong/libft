@@ -27,6 +27,7 @@ SOURCES =	ft_addendlink.c\
 			ft_isalnum.c\
 			ft_isalpha.c\
 			ft_isascii.c\
+			ft_isblank.c\
 			ft_isdigit.c\
 			ft_islower.c\
 			ft_isprint.c\

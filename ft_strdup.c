@@ -17,13 +17,10 @@ char		*ft_strdup(const char *s)
 	size_t			len;
 	char			*dup;
 
-	if (!(dup = ft_strnew(len = ft_strlen(s))) && len)
+	len = ft_strlen(s);
+	if (!*s || !(dup = ft_strnew(len)))
 		return (NULL);
-	if (dup)
-	{
-		while (len--)
-			dup[len] = s[len];
-		return (dup);
-	}
-	return ((char*)ft_memalloc(sizeof(char)));
+	while (len--)
+		dup[len] = s[len];
+	return (dup);
 }

@@ -22,9 +22,7 @@ t_link	*ft_addnlink(t_chlist **list_handler, void *content,
 		return ((t_link*)NULL);
 	if (!*list_handler)
 	{
-		if (pos_in_lst != 1)
-			return ((t_link*)NULL);
-		*list_handler = ft_newchlist(link = ft_newlink(content, ctnt_size));
+		link = ft_newlink(content, ctnt_size);
 		return (link);
 	}
 	if (++(*list_handler)->lst_size > pos_in_lst ||
@@ -37,7 +35,8 @@ t_link	*ft_addnlink(t_chlist **list_handler, void *content,
 		(*list_handler)->last = link;
 	}
 	(!(next->prev)) || !(next->prev->next = link) ?
-		(*list_handler)->first = link : (link->prev = next->prev);
+		(*list_handler)->first = link :
+		(link->prev = next->prev);
 	link->next = next;
 	return (link);
 }

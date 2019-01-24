@@ -12,32 +12,6 @@
 
 #include "libft.h"
 
-/*
-** Recupere la longueur jusqu'au caractere `c'
-*/
-size_t static		ft_strlenuntil(char const *s, char c)
-{
-	size_t		len;
-
-	len = 0;
-	while (*s && *s++ != c)
-		len++;
-	return (len);
-}
-
-/*
-** Recupere la longueur jusqu'a un caractere different de `c'
-*/
-size_t static		ft_strlenof(char const *s, char c)
-{
-	size_t		len;
-
-	len = 0;
-	while (*s && *s++ == c)
-		len++;
-	return (len);
-}
-
 char				**ft_strsplit(char const *s, char c)
 {
 	char		**tab;
@@ -47,15 +21,18 @@ char				**ft_strsplit(char const *s, char c)
 	if (!s || !(tab = ft_memalloc(ft_strlen(s) / 2 + 2)))
 		return ((char**)NULL);
 	i = 0;
-	while(*s)
+	while (*s)
 	{
-		s += ft_strlenof(s, c);
+		while (*s && *s == c)
+			s++;
 		if (*s)
 		{
-			len = ft_strlenuntil(s, c);
+			len = 0;
+			while (*s && s[len] != c)
+				len++;
 			if (!(tab[i++] = ft_strsub(s, 0, len)))
 				return ((char**)NULL);
-			s+= len;
+			s += len;
 		}
 	}
 	return (tab);

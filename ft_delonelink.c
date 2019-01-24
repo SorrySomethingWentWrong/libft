@@ -15,30 +15,27 @@
 void		ft_delonelink(t_chlist **list, void (*delcont)(void *, size_t),
 	t_link **todel)
 {
-	if (!(*todel))
-		return ; 
-	if(list && *list)
+	if (!*todel || !list || !*list)
+		return ;
+	if ((*todel)->next)
 	{
-		if ((*todel)->next)
+		if ((*todel)->prev)
 		{
-			if ((*todel)->prev)
-			{
-				(*todel)->next->prev = (*todel)->prev;
-				(*todel)->prev->next = (*todel)->next;
-			}
-			else
-			{
-				(*list)->first = (*todel)->next;
-				(*todel)->next->prev = (t_link*)NULL;
-			}
+			(*todel)->next->prev = (*todel)->prev;
+			(*todel)->prev->next = (*todel)->next;
 		}
 		else
 		{
-			(*list)->last = (*todel)->prev;
-			(*todel)->prev->next = (t_link*)NULL;
+			(*list)->first = (*todel)->next;
+			(*todel)->next->prev = (t_link*)NULL;
 		}
-		(*list)->lst_size -= 1;
 	}
+	else
+	{
+		(*list)->last = (*todel)->prev;
+		(*todel)->prev->next = (t_link*)NULL;
+	}
+	(*list)->lst_size -= 1;
 	(*delcont)((*todel)->content, (*todel)->ctnt_size);
 	ft_memdel((void**)todel);
 }
