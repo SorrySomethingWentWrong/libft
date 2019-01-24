@@ -12,18 +12,26 @@
 
 int			ft_atoi(const char *str)
 {
-	unsigned int	i;
+	unsigned int	len;
 	int				neg;
 	unsigned int	uns;
 
-	neg = 0;
-	uns  = 0;
-	i = 0;
+	neg = -1;
 	while (*str && ((!(*str & 0xf0) && *str ^ 0xf7) || *str == ' '))
 		str++;
-	if (*str && ((*str == '-' ? --neg : neg++) && *str == '+'))
+	if (*str && ((*str == '-' ? neg : ++neg) || *str == '+'))
 		str++;
-	while (*str && *str >= '0' && *str <= '9' && i++ != 10)
+	while (*str && *str == '0')
+		str++;
+	if (!*str || (*str < '0' && *str < '9'))
+		return (0);
+	uns  = 0;
+	len = 0;
+	while (str[len] && str[len] >= '0' && str[len] <= '9' && len < 11)
+		len++;
+	if (len == 11)
+		return (neg ? 0 : -1);
+	while (len--)
 	{
 		uns *= 10;
 		uns += *(str++) - '0';

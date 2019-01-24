@@ -26,26 +26,27 @@ char			*ft_itoa(int n)
 {
 	char		*s;
 	size_t		len;
-	size_t		i;
 
 	if (!n)
 		return (ft_strcpy(ft_strnew(1), "0"));
-	if (n == -2147483648)
-		return (ft_strcpy(ft_strnew(11), "-2147483648"));
 	len = countdigits(n);
 	if (n < 0)
 	{
+		if (n == -2147483648)
+			return (ft_strcpy(ft_strnew(11), "-2147483648"));
 		if (!(s = ft_strnew(1 + len)))
 			return ((char*)NULL);
 		*s++ = '-';
+		n *= -1;
 	}
 	else if (!(s = ft_strnew(len)))
 		return ((char*)NULL);
-	i = 0;
-	while (i < len)
+	while (len--)
 	{
-		s[i++] = '0' + (n % 10);
+		s[len] = '0' + (n % 10);
 		n /= 10;
 	}
+	if (*(s - 1) == '-')
+		return (s - 1);
 	return (s);
 }
