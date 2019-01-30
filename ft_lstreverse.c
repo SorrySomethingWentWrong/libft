@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-t_list static	*recrevlst(t_list *prev, t_list *list)
+static t_list	*recrevlst(t_list *prev, t_list *list)
 {
 	t_list		*temp;
 

@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-t_link static	*asc_get(t_chlist const *list_handler, size_t pos_in_lst)
+static t_link		*asc_get(t_chlist const *list_handler, size_t pos_in_lst)
 {
 	t_link		*link;
 	size_t		index;
@@ -24,7 +24,7 @@ t_link static	*asc_get(t_chlist const *list_handler, size_t pos_in_lst)
 	return (link);
 }
 
-t_link static	*desc_get(t_chlist const *list_handler, size_t pos_in_lst)
+static t_link		*desc_get(t_chlist const *list_handler, size_t pos_in_lst)
 {
 	t_link		*link;
 	size_t		index;
